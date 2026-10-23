@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PC Part Builder & Hardware Compatibility Checker - Công cụ khảo sát ngân sách, gợi ý cấu hình và kiểm tra tương thích phần cứng máy tính.">
+  <title>Trang Chủ & Khảo Sát Cấu Hình | PC Part Builder</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header chính & Điều hướng hệ thống -->
+  <header id="site-header">
+    <nav id="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html" class="brand-logo" aria-label="Trang chủ PC Part Builder">
+        <span class="logo-icon">⚡</span>
+        <strong class="logo-text">PC Builder Pro</strong>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Khảo sát & Gợi ý</a></li>
+        <li><a href="catalog.html">Kho linh kiện</a></li>
+        <li><a href="builder.html">Bàn lắp ráp</a></li>
+        <li><a href="saved.html">Cấu hình đã lưu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Khu vực nội dung chính -->
+  <main id="main-content">
+    <!-- Hero Section: Giới thiệu giải pháp -->
+    <section id="hero-banner" aria-labelledby="hero-title">
+      <h1 id="hero-title">Xây dựng cấu hình PC tối ưu & Tương thích 100%</h1>
+      <p class="hero-subtitle">
+        Tự động kiểm tra xung đột Socket, tương thích chuẩn RAM, kích thước vỏ Case và tính toán công suất nguồn (PSU) chuẩn xác trong tích tắc.
+      </p>
+    </section>
+
+    <!-- Khảo sát nhu cầu và ngân sách -->
+    <section id="budget-survey-section" aria-labelledby="survey-heading">
+      <header class="section-header">
+        <h2 id="survey-heading">Khảo Sát Nhu Cầu & Dự Toán Ngân Sách</h2>
+        <p class="section-desc">Cung cấp mục đích sử dụng và mức chi trả mong muốn để hệ thống đề xuất cấu hình phù hợp nhất.</p>
+      </header>
+
+      <form id="pc-survey-form" action="/api/v1/builds/recommend" method="POST">
+        <!-- Nhóm ngân sách dự kiến -->
+        <fieldset class="form-group">
+          <legend>1. Ngân sách dự kiến (VND)</legend>
+          <label for="budget-range">Mức chi phí mong muốn: <output id="budget-output" for="budget-range">25,000,000</output> đ</label>
+          <input type="range" id="budget-range" name="budget" min="10000000" max="100000000" step="1000000" value="25000000">
+        </fieldset>
+
+        <!-- Nhóm mục đích sử dụng -->
+        <fieldset class="form-group">
+          <legend>2. Mục đích sử dụng chính</legend>
+          <ul class="options-list">
+            <li>
+              <label>
+                <input type="radio" name="purpose" value="gaming" checked>
+                <span>Chơi game (Gaming AAA, Esport, High Refresh Rate)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="purpose" value="workstation">
+                <span>Đồ họa & Render 3D / Video 4K (Workstation)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="purpose" value="ai_ml">
+                <span>Lập trình & Huấn luyện mô hình AI/Machine Learning</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="purpose" value="office">
+                <span>Văn phòng, Học tập & Tác vụ cơ bản</span>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <!-- Nhóm ưu tiên thương hiệu -->
+        <fieldset class="form-group">
+          <legend>3. Nền tảng vi xử lý (CPU Platform)</legend>
+          <ul class="options-list horizontal">
+            <li>
+              <label>
+                <input type="radio" name="cpu_brand" value="any" checked>
+                <span>Bất kỳ (Tối ưu giá/hiệu năng)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cpu_brand" value="intel">
+                <span>Intel Core (LGA1700 / LGA1851)</span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cpu_brand" value="amd">
+                <span>AMD Ryzen (AM4 / AM5)</span>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <menu class="form-actions">
+          <li><button type="reset" class="btn btn-secondary">Đặt lại</button></li>
+          <li><button type="submit" class="btn btn-primary" id="btn-submit-survey">Tìm cấu hình đề xuất</button></li>
+        </menu>
+      </form>
+    </section>
+
+    <!-- Khu vực hiển thị danh sách gợi ý mẫu -->
+    <section id="preset-builds-section" aria-labelledby="preset-heading">
+      <header class="section-header">
+        <h2 id="preset-heading">Cấu Hình Mẫu Phổ Biến Theo Phân Khúc</h2>
+      </header>
+
+      <ul class="preset-grid">
+        <li>
+          <article class="preset-card">
+            <header>
+              <h3 class="preset-title">Chiến Thần Esport Phổ Thông</h3>
+              <p class="preset-price">14.500.000 ₫</p>
+            </header>
+            <p class="preset-specs">Intel Core i5-12400F | RTX 3060 12GB | 16GB DDR4 | 500W PSU</p>
+            <footer>
+              <a href="builder.html?preset=esport-budget" class="btn btn-outline">Tùy biến cấu hình</a>
+            </footer>
+          </article>
+        </li>
+        <li>
+          <article class="preset-card highlighted">
+            <header>
+              <h3 class="preset-title">Gaming Cao Cấp 2K QHD</h3>
+              <p class="preset-price">32.800.000 ₫</p>
+            </header>
+            <p class="preset-specs">AMD Ryzen 7 7800X3D | RTX 4070 Super | 32GB DDR5 | 750W Gold</p>
+            <footer>
+              <a href="builder.html?preset=gaming-qhd" class="btn btn-outline">Tùy biến cấu hình</a>
+            </footer>
+          </article>
+        </li>
+        <li>
+          <article class="preset-card">
+            <header>
+              <h3 class="preset-title">Creator & Render Workstation</h3>
+              <p class="preset-price">48.900.000 ₫</p>
+            </header>
+            <p class="preset-specs">Intel Core i7-14700K | RTX 4080 Super | 64GB DDR5 | 850W Gold</p>
+            <footer>
+              <a href="builder.html?preset=creator-pro" class="btn btn-outline">Tùy biến cấu hình</a>
+            </footer>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Chân trang -->
+  <footer id="site-footer">
+    <p>&copy; 2026 PC Part Builder & Hardware Compatibility Checker. Chuẩn hóa kiến trúc Layered Architecture.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

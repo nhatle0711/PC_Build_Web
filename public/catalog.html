@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kho linh kiện máy tính PC Part Builder - Tra cứu CPU, Mainboard, RAM, GPU, PSU với thông số kỹ thuật chi tiết.">
+  <title>Kho Linh Kiện & Bộ Lọc Phần Cứng | PC Part Builder</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header chính -->
+  <header id="site-header">
+    <nav id="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html" class="brand-logo" aria-label="Trang chủ PC Part Builder">
+        <span class="logo-icon">⚡</span>
+        <strong class="logo-text">PC Builder Pro</strong>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Khảo sát & Gợi ý</a></li>
+        <li><a href="catalog.html" class="active" aria-current="page">Kho linh kiện</a></li>
+        <li><a href="builder.html">Bàn lắp ráp</a></li>
+        <li><a href="saved.html">Cấu hình đã lưu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Bố cục chính gồm Bộ lọc (aside) và Danh sách sản phẩm (section) -->
+  <main id="catalog-layout">
+    <!-- Cột bên: Bộ lọc tìm kiếm phần cứng -->
+    <aside id="catalog-filters" aria-label="Bộ lọc phần cứng">
+      <header class="filter-header">
+        <h2>Bộ Lọc Linh Kiện</h2>
+      </header>
+
+      <form id="filter-form">
+        <!-- Phân loại linh kiện -->
+        <fieldset class="filter-group">
+          <legend>Loại phần cứng</legend>
+          <ul class="filter-list">
+            <li><label><input type="radio" name="category" value="all" checked> Tất cả</label></li>
+            <li><label><input type="radio" name="category" value="cpu"> Vi xử lý (CPU)</label></li>
+            <li><label><input type="radio" name="category" value="motherboard"> Bo mạch chủ (Mainboard)</label></li>
+            <li><label><input type="radio" name="category" value="ram"> Bộ nhớ trong (RAM)</label></li>
+            <li><label><input type="radio" name="category" value="gpu"> Card đồ họa (GPU)</label></li>
+            <li><label><input type="radio" name="category" value="psu"> Nguồn máy tính (PSU)</label></li>
+            <li><label><input type="radio" name="category" value="storage"> Ổ cứng (SSD/HDD)</label></li>
+            <li><label><input type="radio" name="category" value="case"> Vỏ máy (Case)</label></li>
+          </ul>
+        </fieldset>
+
+        <!-- Lọc theo thương hiệu -->
+        <fieldset class="filter-group">
+          <legend>Thương hiệu sản xuất</legend>
+          <ul class="filter-list">
+            <li><label><input type="checkbox" name="brand" value="intel"> Intel</label></li>
+            <li><label><input type="checkbox" name="brand" value="amd"> AMD</label></li>
+            <li><label><input type="checkbox" name="brand" value="nvidia"> NVIDIA</label></li>
+            <li><label><input type="checkbox" name="brand" value="asus"> ASUS</label></li>
+            <li><label><input type="checkbox" name="brand" value="msi"> MSI</label></li>
+            <li><label><input type="checkbox" name="brand" value="gigabyte"> GIGABYTE</label></li>
+          </ul>
+        </fieldset>
+
+        <!-- Lọc theo khoảng giá -->
+        <fieldset class="filter-group">
+          <legend>Khoảng giá (VND)</legend>
+          <label for="price-min">Từ:</label>
+          <input type="number" id="price-min" name="min_price" placeholder="0" min="0" step="500000">
+          <label for="price-max">Đến:</label>
+          <input type="number" id="price-max" name="max_price" placeholder="50.000.000" min="0" step="500000">
+        </fieldset>
+
+        <menu class="filter-actions">
+          <li><button type="reset" class="btn btn-secondary">Bỏ lọc</button></li>
+          <li><button type="submit" class="btn btn-primary">Áp dụng</button></li>
+        </menu>
+      </form>
+    </aside>
+
+    <!-- Khu vực hiển thị kết quả linh kiện -->
+    <section id="catalog-results" aria-labelledby="catalog-heading">
+      <header class="results-header">
+        <h1 id="catalog-heading">Kho Linh Kiện Phần Cứng</h1>
+        <search role="search">
+          <form id="search-component-form">
+            <label for="component-search-input" class="visually-hidden">Tìm kiếm linh kiện</label>
+            <input type="search" id="component-search-input" placeholder="Tìm tên linh kiện, mã socket, chipset...">
+            <button type="submit" class="btn btn-primary">Tìm</button>
+          </form>
+        </search>
+      </header>
+
+      <!-- Grid danh sách linh kiện -->
+      <ul class="component-grid" id="component-list-container">
+        <!-- Item 1: CPU -->
+        <li>
+          <article class="component-card">
+            <header class="card-header">
+              <span class="badge badge-cpu">CPU</span>
+              <h2 class="component-name">Intel Core i5-13600K</h2>
+              <p class="component-brand">Intel</p>
+            </header>
+            <section class="card-specs">
+              <dl>
+                <dt>Socket:</dt>
+                <dd>LGA1700</dd>
+                <dt>TDP:</dt>
+                <dd>125W (Max Turbo 181W)</dd>
+                <dt>Số nhân / luồng:</dt>
+                <dd>14 Cores (6P + 8E) / 20 Threads</dd>
+              </dl>
+            </section>
+            <footer class="card-footer">
+              <strong class="component-price">7.890.000 ₫</strong>
+              <button type="button" class="btn btn-primary btn-add-to-build" data-id="cpu-13600k">Thêm vào bàn dựng</button>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Item 2: Mainboard -->
+        <li>
+          <article class="component-card">
+            <header class="card-header">
+              <span class="badge badge-mb">Mainboard</span>
+              <h2 class="component-name">MSI MAG B760 TOMAHAWK WIFI</h2>
+              <p class="component-brand">MSI</p>
+            </header>
+            <section class="card-specs">
+              <dl>
+                <dt>Socket:</dt>
+                <dd>LGA1700</dd>
+                <dt>Chuẩn RAM:</dt>
+                <dd>DDR5 (4 khe, tối đa 192GB)</dd>
+                <dt>Kích thước:</dt>
+                <dd>ATX</dd>
+              </dl>
+            </section>
+            <footer class="card-footer">
+              <strong class="component-price">5.250.000 ₫</strong>
+              <button type="button" class="btn btn-primary btn-add-to-build" data-id="mb-b760-tomahawk">Thêm vào bàn dựng</button>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Item 3: GPU -->
+        <li>
+          <article class="component-card">
+            <header class="card-header">
+              <span class="badge badge-gpu">GPU</span>
+              <h2 class="component-name">ASUS TUF Gaming GeForce RTX 4070 SUPER 12GB</h2>
+              <p class="component-brand">ASUS</p>
+            </header>
+            <section class="card-specs">
+              <dl>
+                <dt>VRAM:</dt>
+                <dd>12GB GDDR6X</dd>
+                <dt>Công suất tiêu thụ:</dt>
+                <dd>220W</dd>
+                <dt>Nguồn đề xuất:</dt>
+                <dd>650W</dd>
+              </dl>
+            </section>
+            <footer class="card-footer">
+              <strong class="component-price">18.490.000 ₫</strong>
+              <button type="button" class="btn btn-primary btn-add-to-build" data-id="gpu-rtx4070s">Thêm vào bàn dựng</button>
+            </footer>
+          </article>
+        </li>
+      </ul>
+
+      <!-- Điều hướng phân trang -->
+      <nav id="catalog-pagination" aria-label="Phân trang danh mục linh kiện">
+        <ul class="pagination-list">
+          <li><a href="#" class="page-link disabled" aria-disabled="true">« Trang trước</a></li>
+          <li><a href="#" class="page-link current" aria-current="page">1</a></li>
+          <li><a href="#" class="page-link">2</a></li>
+          <li><a href="#" class="page-link">3</a></li>
+          <li><a href="#" class="page-link">Trang kế »</a></li>
+        </ul>
+      </nav>
+    </section>
+  </main>
+
+  <!-- Chân trang -->
+  <footer id="site-footer">
+    <p>&copy; 2026 PC Part Builder & Hardware Compatibility Checker.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

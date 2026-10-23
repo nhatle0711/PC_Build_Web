@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Danh sách các bộ cấu hình máy tính cá nhân đã được lưu trữ, chia sẻ hoặc xuất file thông số.">
+  <title>Cấu Hình Đã Lưu | PC Part Builder</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header chính -->
+  <header id="site-header">
+    <nav id="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html" class="brand-logo" aria-label="Trang chủ PC Part Builder">
+        <span class="logo-icon">⚡</span>
+        <strong class="logo-text">PC Builder Pro</strong>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Khảo sát & Gợi ý</a></li>
+        <li><a href="catalog.html">Kho linh kiện</a></li>
+        <li><a href="builder.html">Bàn lắp ráp</a></li>
+        <li><a href="saved.html" class="active" aria-current="page">Cấu hình đã lưu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="saved-builds-layout">
+    <section id="saved-builds-section" aria-labelledby="saved-builds-title">
+      <header class="section-header">
+        <h1 id="saved-builds-title">Danh Sách Cấu Hình PC Đã Lưu</h1>
+        <p class="section-desc">Quản lý, chỉnh sửa tiếp, hoặc sao chép liên kết chia sẻ cấu hình của bạn.</p>
+      </header>
+
+      <!-- Danh sách card các cấu hình đã lưu -->
+      <ul class="builds-grid" id="saved-builds-container">
+        <!-- Build item 1 -->
+        <li>
+          <article class="build-card">
+            <header class="build-card-header">
+              <h2 class="build-name">Gaming Rig 2K Esport 2026</h2>
+              <time datetime="2026-10-23" class="build-date">23/10/2026</time>
+            </header>
+            
+            <section class="build-summary">
+              <p class="build-total-price">Tổng chi phí: <strong>28.950.000 ₫</strong></p>
+              <p class="build-wattage">Điện năng ước tính: <strong>480W</strong> (PSU 650W)</p>
+              <ul class="components-preview-list">
+                <li>CPU: Intel Core i5-13600K</li>
+                <li>Mainboard: MSI B760 Tomahawk WiFi</li>
+                <li>RAM: Corsair Vengeance 32GB DDR5</li>
+                <li>GPU: RTX 4070 12GB</li>
+              </ul>
+            </section>
+
+            <footer class="build-card-actions">
+              <menu class="actions-menu">
+                <li><a href="builder.html?build_id=1" class="btn btn-primary">Chỉnh sửa tiếp</a></li>
+                <li><button type="button" class="btn btn-outline" data-action="share" data-id="1">Sao chép liên kết</button></li>
+                <li><button type="button" class="btn btn-danger" data-action="delete" data-id="1">Xóa</button></li>
+              </menu>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Build item 2 -->
+        <li>
+          <article class="build-card">
+            <header class="build-card-header">
+              <h2 class="build-name">Đồ Họa & Dựng Phim 4K</h2>
+              <time datetime="2026-10-20" class="build-date">20/10/2026</time>
+            </header>
+            
+            <section class="build-summary">
+              <p class="build-total-price">Tổng chi phí: <strong>45.200.000 ₫</strong></p>
+              <p class="build-wattage">Điện năng ước tính: <strong>620W</strong> (PSU 850W)</p>
+              <ul class="components-preview-list">
+                <li>CPU: AMD Ryzen 9 7900X</li>
+                <li>Mainboard: ASUS ROG Strix B650-A</li>
+                <li>RAM: Kingston Fury 64GB DDR5</li>
+                <li>GPU: RTX 4070 Ti Super 16GB</li>
+              </ul>
+            </section>
+
+            <footer class="build-card-actions">
+              <menu class="actions-menu">
+                <li><a href="builder.html?build_id=2" class="btn btn-primary">Chỉnh sửa tiếp</a></li>
+                <li><button type="button" class="btn btn-outline" data-action="share" data-id="2">Sao chép liên kết</button></li>
+                <li><button type="button" class="btn btn-danger" data-action="delete" data-id="2">Xóa</button></li>
+              </menu>
+            </footer>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Chân trang -->
+  <footer id="site-footer">
+    <p>&copy; 2026 PC Part Builder & Hardware Compatibility Checker.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

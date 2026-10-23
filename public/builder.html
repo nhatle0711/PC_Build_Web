@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bàn lắp ráp cấu hình PC và kiểm tra tính tương thích phần cứng thời gian thực kèm thanh đo công suất nguồn PSU.">
+  <title>Bàn Lắp Ráp & Đo Công Suất PSU | PC Part Builder</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header chính -->
+  <header id="site-header">
+    <nav id="main-nav" aria-label="Điều hướng chính">
+      <a href="index.html" class="brand-logo" aria-label="Trang chủ PC Part Builder">
+        <span class="logo-icon">⚡</span>
+        <strong class="logo-text">PC Builder Pro</strong>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Khảo sát & Gợi ý</a></li>
+        <li><a href="catalog.html">Kho linh kiện</a></li>
+        <li><a href="builder.html" class="active" aria-current="page">Bàn lắp ráp</a></li>
+        <li><a href="saved.html">Cấu hình đã lưu</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="builder-layout">
+    <!-- Khu vực bàn lắp ráp chính: Danh sách các slot linh kiện -->
+    <section id="builder-workspace" aria-labelledby="builder-title">
+      <header class="workspace-header">
+        <h1 id="builder-title">Bàn Lắp Ráp Cấu Hình PC</h1>
+        <p class="workspace-subtitle">Lựa chọn từng thành phần linh kiện để kiểm tra tính tương thích và tính toán công suất nguồn.</p>
+      </header>
+
+      <!-- Danh sách từng slot linh kiện -->
+      <ol class="component-slot-list" id="builder-slots">
+        <!-- Slot: CPU -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="cpu">
+            <header class="slot-header">
+              <span class="slot-type">1. Vi xử lý (CPU)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn bộ vi xử lý trung tâm.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=cpu" class="btn btn-outline">Chọn CPU</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: Motherboard -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="motherboard">
+            <header class="slot-header">
+              <span class="slot-type">2. Bo mạch chủ (Motherboard)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn bo mạch chủ.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=motherboard" class="btn btn-outline">Chọn Motherboard</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: RAM -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="ram">
+            <header class="slot-header">
+              <span class="slot-type">3. Bộ nhớ trong (RAM)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn RAM.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=ram" class="btn btn-outline">Chọn RAM</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: GPU -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="gpu">
+            <header class="slot-header">
+              <span class="slot-type">4. Card đồ họa (GPU)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn Card đồ họa.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=gpu" class="btn btn-outline">Chọn GPU</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: Storage -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="storage">
+            <header class="slot-header">
+              <span class="slot-type">5. Ổ cứng (Storage SSD/HDD)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn ổ lưu trữ.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=storage" class="btn btn-outline">Chọn Ổ Cứng</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: PSU -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="psu">
+            <header class="slot-header">
+              <span class="slot-type">6. Nguồn máy tính (PSU)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn nguồn máy tính.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=psu" class="btn btn-outline">Chọn Nguồn PSU</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: Case -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="case">
+            <header class="slot-header">
+              <span class="slot-type">7. Vỏ máy tính (Case)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn vỏ case.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=case" class="btn btn-outline">Chọn Vỏ Case</a>
+            </footer>
+          </article>
+        </li>
+
+        <!-- Slot: Cooler -->
+        <li class="slot-item">
+          <article class="slot-card" data-slot="cooler">
+            <header class="slot-header">
+              <span class="slot-type">8. Tản nhiệt (CPU Cooler)</span>
+              <span class="slot-status badge badge-empty">Chưa chọn</span>
+            </header>
+            <section class="slot-body">
+              <p class="placeholder-text">Chưa chọn tản nhiệt.</p>
+            </section>
+            <footer class="slot-actions">
+              <a href="catalog.html?category=cooler" class="btn btn-outline">Chọn Tản Nhiệt</a>
+            </footer>
+          </article>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Cột bên: Bảng kiểm tra tính tương thích và Đo công suất PSU -->
+    <aside id="builder-summary-sidebar" aria-label="Tổng quan cấu hình và kiểm tra tương thích">
+      <!-- Bảng trạng thái tương thích -->
+      <section class="summary-card" id="compatibility-box" aria-live="polite">
+        <header class="summary-header">
+          <h2>Tương Thích Phần Cứng</h2>
+        </header>
+        <section class="compatibility-result alert-success">
+          <p id="compatibility-message"><strong>✓ Chưa phát hiện xung đột phần cứng</strong></p>
+          <ul id="compatibility-notes-list">
+            <li>Vui lòng thêm linh kiện để kiểm tra tính tương thích chéo.</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Thanh đo nguồn PSU -->
+      <section class="summary-card" id="wattage-meter-box">
+        <header class="summary-header">
+          <h2>Ước Tính Công Suất Nguồn (PSU)</h2>
+        </header>
+        <section class="wattage-details">
+          <p>Công suất tiêu thụ ước tính: <output id="estimated-wattage">0</output> W</p>
+          <label for="wattage-meter" class="visually-hidden">Tỷ lệ công suất nguồn</label>
+          <meter id="wattage-meter" min="0" max="850" low="400" high="700" optimum="500" value="0">0 W</meter>
+          <p class="psu-recommendation">Khuyến nghị PSU tối thiểu: <strong id="recommended-psu-wattage">450 W</strong></p>
+        </section>
+      </section>
+
+      <!-- Tổng tiền và lưu cấu hình -->
+      <section class="summary-card" id="price-summary-box">
+        <header class="summary-header">
+          <h2>Tổng Dự Toán</h2>
+        </header>
+        <p class="total-price-display">
+          <output id="total-build-price">0</output> ₫
+        </p>
+
+        <form id="save-build-form" action="/api/v1/builds" method="POST">
+          <label for="build-name-input">Tên cấu hình máy:</label>
+          <input type="text" id="build-name-input" name="build_name" placeholder="VD: PC Đồ Họa 2026" required>
+
+          <menu class="builder-actions">
+            <li><button type="submit" class="btn btn-primary" id="btn-save-build">Lưu cấu hình này</button></li>
+            <li><button type="button" class="btn btn-secondary" id="btn-clear-build">Xóa làm lại</button></li>
+          </menu>
+        </form>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Chân trang -->
+  <footer id="site-footer">
+    <p>&copy; 2026 PC Part Builder & Hardware Compatibility Checker.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
