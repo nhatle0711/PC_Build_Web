@@ -1,189 +1,709 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kho linh kiện máy tính PC Part Builder - Tra cứu CPU, Mainboard, RAM, GPU, PSU với thông số kỹ thuật chi tiết.">
-  <title>Kho Linh Kiện & Bộ Lọc Phần Cứng | PC Part Builder</title>
+  <meta name="description" content="Kho linh kiện phần cứng máy tính PC Builder Pro - Tra cứu CPU, Mainboard, RAM, GPU, SSD, PSU với thông số kỹ thuật chuẩn công nghiệp.">
+  <title>Kho Linh Kiện & Bộ Lọc Phần Cứng | PC Builder Pro</title>
+
+  <!-- Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5500',
+              'orange-hover': '#E04B00',
+              amber: '#F59E0B',
+              dark: '#090A0F',
+              gunmetal: '#12141C',
+              graphite: '#181B24',
+              'graphite-light': '#212532',
+              border: '#272B3A',
+              'border-bright': '#3B4259',
+              emerald: '#10B981',
+              crimson: '#EF4444',
+              titanium: '#F4F4F6'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Industrial Engineering CSS System -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- Header chính -->
-  <header id="site-header">
-    <nav id="main-nav" aria-label="Điều hướng chính">
-      <a href="index.html" class="brand-logo" aria-label="Trang chủ PC Part Builder">
-        <span class="logo-icon">⚡</span>
-        <strong class="logo-text">PC Builder Pro</strong>
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Khảo sát & Gợi ý</a></li>
-        <li><a href="catalog.html" class="active" aria-current="page">Kho linh kiện</a></li>
-        <li><a href="builder.html">Bàn lắp ráp</a></li>
-        <li><a href="saved.html">Cấu hình đã lưu</a></li>
-      </ul>
-    </nav>
+<body class="bg-brand-dark text-brand-titanium min-h-screen flex flex-col font-sans selection:bg-brand-orange selection:text-white antialiased tech-grid-bg">
+
+  <!-- Header chính & Điều hướng hệ thống -->
+  <header id="site-header" class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Brand Logo -->
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-3 group" aria-label="PC Builder Pro - Trang chủ">
+            <div class="w-9 h-9 bg-brand-orange flex items-center justify-center rounded-sm shadow-[0_0_12px_rgba(255,85,0,0.5)] transition-transform group-hover:scale-105">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="font-bold tracking-tight text-lg text-white font-mono uppercase">PC Builder<span class="text-brand-orange">Pro</span></span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-brand-graphite border border-brand-border text-zinc-400 rounded-none uppercase">CATALOG</span>
+              </div>
+              <p class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest hidden sm:block">Hardware Inventory Telemetry</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav id="main-nav" class="hidden md:flex items-center space-x-1" aria-label="Điều hướng chính">
+          <a href="index.html" class="px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-brand-graphite transition-colors">
+            [01] Khảo Sát & Gợi Ý
+          </a>
+          <a href="catalog.html" class="px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-brand-orange bg-brand-orange/10 border-b-2 border-brand-orange font-semibold transition-colors" aria-current="page">
+            [02] Kho Linh Kiện
+          </a>
+          <a href="builder.html" class="px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-brand-graphite transition-colors flex items-center space-x-1.5">
+            <span>[03] Bàn Lắp Ráp</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald animate-pulse"></span>
+          </a>
+          <a href="saved.html" class="px-3.5 py-2 text-xs font-mono uppercase tracking-wider text-zinc-400 hover:text-white hover:bg-brand-graphite transition-colors">
+            [04] Cấu Hình Đã Lưu
+          </a>
+        </nav>
+
+        <!-- Right Quick Action -->
+        <div class="flex items-center space-x-3">
+          <div class="hidden lg:flex items-center space-x-2 text-[11px] font-mono text-zinc-400 px-3 py-1.5 bg-brand-gunmetal border border-brand-border">
+            <span class="w-2 h-2 rounded-full bg-brand-emerald shadow-[0_0_8px_#10B981]"></span>
+            <span>INVENTORY SYNC: LIVE</span>
+          </div>
+          <a href="builder.html" class="btn-industrial btn-industrial-orange text-xs py-2 px-3.5">
+            <span>Vào Bàn Dựng</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Bố cục chính gồm Bộ lọc (aside) và Danh sách sản phẩm (section) -->
-  <main id="catalog-layout">
-    <!-- Cột bên: Bộ lọc tìm kiếm phần cứng -->
-    <aside id="catalog-filters" aria-label="Bộ lọc phần cứng">
-      <header class="filter-header">
-        <h2>Bộ Lọc Linh Kiện</h2>
-      </header>
+  <!-- Main Catalog Layout: Sidebar Filter (<aside>) + Component Grid (<section>) -->
+  <main id="catalog-layout" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Breadcrumb & Telemetry Status -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-brand-border gap-4">
+      <div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-zinc-400 mb-1">
+          <a href="index.html" class="hover:text-brand-orange">ROOT</a>
+          <span>/</span>
+          <span class="text-brand-orange">HARDWARE_CATALOG</span>
+          <span>/</span>
+          <span class="text-zinc-500">SPEC_INVENTORY_V1</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold uppercase text-white font-mono tracking-tight">
+          Kho Linh Kiện & Bộ Lọc Phần Cứng
+        </h1>
+      </div>
+      <div class="flex items-center space-x-4 font-mono text-xs text-zinc-400">
+        <span class="px-2.5 py-1 bg-brand-graphite border border-brand-border">TỔNG LINH KIỆN: <strong class="text-white">1,280</strong></span>
+        <span class="px-2.5 py-1 bg-brand-graphite border border-brand-border text-brand-emerald">KHO HÀNG: SẴN SÀNG</span>
+      </div>
+    </div>
 
-      <form id="filter-form">
-        <!-- Phân loại linh kiện -->
-        <fieldset class="filter-group">
-          <legend>Loại phần cứng</legend>
-          <ul class="filter-list">
-            <li><label><input type="radio" name="category" value="all" checked> Tất cả</label></li>
-            <li><label><input type="radio" name="category" value="cpu"> Vi xử lý (CPU)</label></li>
-            <li><label><input type="radio" name="category" value="motherboard"> Bo mạch chủ (Mainboard)</label></li>
-            <li><label><input type="radio" name="category" value="ram"> Bộ nhớ trong (RAM)</label></li>
-            <li><label><input type="radio" name="category" value="gpu"> Card đồ họa (GPU)</label></li>
-            <li><label><input type="radio" name="category" value="psu"> Nguồn máy tính (PSU)</label></li>
-            <li><label><input type="radio" name="category" value="storage"> Ổ cứng (SSD/HDD)</label></li>
-            <li><label><input type="radio" name="category" value="case"> Vỏ máy (Case)</label></li>
-          </ul>
-        </fieldset>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT STICKY FILTER SIDEBAR (<aside> with #catalog-filter-form) -->
+      <aside id="catalog-filters" class="lg:col-span-3 sticky top-24 space-y-6" aria-label="Bộ lọc phần cứng">
+        <div class="bg-brand-graphite border border-brand-border p-5 crosshair-container shadow-xl">
+          
+          <header class="border-b border-brand-border pb-3 mb-5 flex items-center justify-between">
+            <h2 class="text-sm font-mono font-bold uppercase text-white tracking-wider flex items-center space-x-2">
+              <span class="text-brand-orange">⚙</span>
+              <span>Bộ Lọc Kỹ Thuật</span>
+            </h2>
+            <span class="text-[10px] font-mono text-zinc-500 uppercase">SYS.FILTER</span>
+          </header>
 
-        <!-- Lọc theo thương hiệu -->
-        <fieldset class="filter-group">
-          <legend>Thương hiệu sản xuất</legend>
-          <ul class="filter-list">
-            <li><label><input type="checkbox" name="brand" value="intel"> Intel</label></li>
-            <li><label><input type="checkbox" name="brand" value="amd"> AMD</label></li>
-            <li><label><input type="checkbox" name="brand" value="nvidia"> NVIDIA</label></li>
-            <li><label><input type="checkbox" name="brand" value="asus"> ASUS</label></li>
-            <li><label><input type="checkbox" name="brand" value="msi"> MSI</label></li>
-            <li><label><input type="checkbox" name="brand" value="gigabyte"> GIGABYTE</label></li>
-          </ul>
-        </fieldset>
+          <!-- Form with preserved ID #catalog-filter-form -->
+          <form id="catalog-filter-form" action="#" method="GET" class="space-y-6">
+            
+            <!-- 1. Search Keyword -->
+            <fieldset class="space-y-2">
+              <label for="search-keyword" class="text-xs font-mono text-zinc-300 uppercase tracking-wider block font-semibold">
+                [01] Từ khóa tìm kiếm
+              </label>
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="search-keyword" 
+                  name="keyword" 
+                  placeholder="VD: 14700K, RTX 4070, B760..." 
+                  class="w-full bg-brand-gunmetal border border-brand-border px-3 py-2 text-xs font-mono text-white placeholder-zinc-500 focus:border-brand-orange"
+                >
+                <span class="absolute right-2.5 top-2 text-xs text-zinc-500">🔍</span>
+              </div>
+            </fieldset>
 
-        <!-- Lọc theo khoảng giá -->
-        <fieldset class="filter-group">
-          <legend>Khoảng giá (VND)</legend>
-          <label for="price-min">Từ:</label>
-          <input type="number" id="price-min" name="min_price" placeholder="0" min="0" step="500000">
-          <label for="price-max">Đến:</label>
-          <input type="number" id="price-max" name="max_price" placeholder="50.000.000" min="0" step="500000">
-        </fieldset>
+            <!-- 2. Category Radio Buttons (ALL, CPU, MAINBOARD, RAM, GPU, SSD, PSU) -->
+            <fieldset class="space-y-2.5 border-t border-brand-border/60 pt-4">
+              <legend class="text-xs font-mono text-zinc-300 uppercase tracking-wider block font-semibold mb-1">
+                [02] Phân loại phần cứng
+              </legend>
+              <ul class="space-y-1.5 text-xs font-mono text-zinc-300">
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="all" checked class="text-brand-orange">
+                      <span class="font-bold text-white uppercase">Tất cả linh kiện</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">1,280</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="cpu" class="text-brand-orange">
+                      <span class="text-zinc-200">Vi xử lý (CPU)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">142</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="mainboard" class="text-brand-orange">
+                      <span class="text-zinc-200">Bo mạch chủ (Mainboard)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">98</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="ram" class="text-brand-orange">
+                      <span class="text-zinc-200">Bộ nhớ trong (RAM)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">116</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="gpu" class="text-brand-orange">
+                      <span class="text-zinc-200">Card đồ họa (GPU)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">84</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="ssd" class="text-brand-orange">
+                      <span class="text-zinc-200">Ổ cứng SSD (M.2 NVMe)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">76</span>
+                  </label>
+                </li>
+                <li>
+                  <label class="flex items-center justify-between p-2 bg-brand-gunmetal/60 hover:bg-brand-gunmetal hover:border-brand-orange border border-transparent cursor-pointer transition-colors">
+                    <span class="flex items-center space-x-2.5">
+                      <input type="radio" name="category" value="psu" class="text-brand-orange">
+                      <span class="text-zinc-200">Nguồn máy tính (PSU)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-500 font-mono">62</span>
+                  </label>
+                </li>
+              </ul>
+            </fieldset>
 
-        <menu class="filter-actions">
-          <li><button type="reset" class="btn btn-secondary">Bỏ lọc</button></li>
-          <li><button type="submit" class="btn btn-primary">Áp dụng</button></li>
-        </menu>
-      </form>
-    </aside>
+            <!-- 3. Price Filter (Preserved ID #max-price) -->
+            <fieldset class="space-y-2 border-t border-brand-border/60 pt-4">
+              <legend class="text-xs font-mono text-zinc-300 uppercase tracking-wider block font-semibold mb-1">
+                [03] Mức giá tối đa (VND)
+              </legend>
+              <div class="space-y-2">
+                <input 
+                  type="number" 
+                  id="max-price" 
+                  name="max_price" 
+                  placeholder="50.000.000" 
+                  min="0" 
+                  step="500000" 
+                  class="w-full bg-brand-gunmetal border border-brand-border px-3 py-2 text-xs font-mono text-white placeholder-zinc-500 focus:border-brand-orange"
+                >
+                <div class="flex justify-between text-[10px] font-mono text-zinc-500">
+                  <span>0 ₫</span>
+                  <span>50.000.000 ₫+</span>
+                </div>
+              </div>
+            </fieldset>
 
-    <!-- Khu vực hiển thị kết quả linh kiện -->
-    <section id="catalog-results" aria-labelledby="catalog-heading">
-      <header class="results-header">
-        <h1 id="catalog-heading">Kho Linh Kiện Phần Cứng</h1>
-        <search role="search">
-          <form id="search-component-form">
-            <label for="component-search-input" class="visually-hidden">Tìm kiếm linh kiện</label>
-            <input type="search" id="component-search-input" placeholder="Tìm tên linh kiện, mã socket, chipset...">
-            <button type="submit" class="btn btn-primary">Tìm</button>
+            <!-- 4. Manufacturer Filter -->
+            <fieldset class="space-y-2 border-t border-brand-border/60 pt-4">
+              <legend class="text-xs font-mono text-zinc-300 uppercase tracking-wider block font-semibold mb-1">
+                [04] Hãng sản xuất
+              </legend>
+              <div class="grid grid-cols-2 gap-2 text-xs font-mono text-zinc-300">
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="intel" class="text-brand-orange">
+                  <span>Intel</span>
+                </label>
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="amd" class="text-brand-orange">
+                  <span>AMD</span>
+                </label>
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="asus" class="text-brand-orange">
+                  <span>ASUS ROG</span>
+                </label>
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="msi" class="text-brand-orange">
+                  <span>MSI</span>
+                </label>
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="corsair" class="text-brand-orange">
+                  <span>Corsair</span>
+                </label>
+                <label class="flex items-center space-x-2 p-1.5 bg-brand-gunmetal/50 cursor-pointer">
+                  <input type="checkbox" name="brand" value="samsung" class="text-brand-orange">
+                  <span>Samsung</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Filter Actions -->
+            <div class="pt-2 flex items-center space-x-2">
+              <button type="reset" class="btn-industrial btn-industrial-zinc flex-1 text-xs py-2">
+                Đặt lại
+              </button>
+              <button type="submit" class="btn-industrial btn-industrial-orange flex-1 text-xs py-2 shadow-md">
+                Áp dụng
+              </button>
+            </div>
+
           </form>
-        </search>
-      </header>
 
-      <!-- Grid danh sách linh kiện -->
-      <ul class="component-grid" id="component-list-container">
-        <!-- Item 1: CPU -->
-        <li>
-          <article class="component-card">
-            <header class="card-header">
-              <span class="badge badge-cpu">CPU</span>
-              <h2 class="component-name">Intel Core i5-13600K</h2>
-              <p class="component-brand">Intel</p>
-            </header>
-            <section class="card-specs">
-              <dl>
-                <dt>Socket:</dt>
-                <dd>LGA1700</dd>
-                <dt>TDP:</dt>
-                <dd>125W (Max Turbo 181W)</dd>
-                <dt>Số nhân / luồng:</dt>
-                <dd>14 Cores (6P + 8E) / 20 Threads</dd>
-              </dl>
-            </section>
-            <footer class="card-footer">
-              <strong class="component-price">7.890.000 ₫</strong>
-              <button type="button" class="btn btn-primary btn-add-to-build" data-id="cpu-13600k">Thêm vào bàn dựng</button>
-            </footer>
+        </div>
+      </aside>
+
+      <!-- RIGHT COMPONENT GRID (<section> with #component-grid) -->
+      <section id="catalog-results" class="lg:col-span-9 space-y-6" aria-labelledby="catalog-results-heading">
+        
+        <!-- Controls Bar -->
+        <div class="bg-brand-graphite border border-brand-border p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center space-x-3">
+            <h2 id="catalog-results-heading" class="text-sm font-mono font-bold text-white uppercase tracking-wider">
+              Danh Sách Linh Kiện Đã Kiểm Định
+            </h2>
+            <span class="text-xs font-mono text-zinc-400 px-2 py-0.5 bg-brand-gunmetal border border-brand-border">
+              HIỂN THỊ 6 TRÊN 1,280
+            </span>
+          </div>
+
+          <div class="flex items-center space-x-3 text-xs font-mono">
+            <label for="sort-select" class="text-zinc-400">Sắp xếp:</label>
+            <select id="sort-select" class="bg-brand-gunmetal border border-brand-border px-3 py-1.5 text-xs font-mono text-white focus:border-brand-orange">
+              <option value="featured">Nổi bật nhất (Khuyên dùng)</option>
+              <option value="price-asc">Giá: Thấp đến Cao</option>
+              <option value="price-desc">Giá: Cao đến Thấp</option>
+              <option value="tdp-asc">Công suất TDP thấp nhất</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 6 Static Preview Hardware Cards inside #component-grid -->
+        <div id="component-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          
+          <!-- Card 1: CPU Intel Core i7-14700K -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <!-- 16:10 Hardware Photo with Zoom -->
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80" 
+                  alt="Intel Core i7-14700K Processor" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">CPU // PROCESSOR</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Content & Specs -->
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">INTEL CORPORATION</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    Intel Core i7-14700K (14th Gen)
+                  </h3>
+                </div>
+
+                <!-- 3 Monospace Spec Pills -->
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">Socket: LGA1700</span>
+                  <span class="spec-pill spec-pill-amber">TDP: 125W (Max 253W)</span>
+                  <span class="spec-pill">Cores: 20 (8P+12E) / 28T</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Price & Add Button -->
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-white">10.890.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="cpu-14700k"
+                data-category="CPU"
+                data-price="10890000"
+                data-tdp="125"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
           </article>
-        </li>
 
-        <!-- Item 2: Mainboard -->
-        <li>
-          <article class="component-card">
-            <header class="card-header">
-              <span class="badge badge-mb">Mainboard</span>
-              <h2 class="component-name">MSI MAG B760 TOMAHAWK WIFI</h2>
-              <p class="component-brand">MSI</p>
-            </header>
-            <section class="card-specs">
-              <dl>
-                <dt>Socket:</dt>
-                <dd>LGA1700</dd>
-                <dt>Chuẩn RAM:</dt>
-                <dd>DDR5 (4 khe, tối đa 192GB)</dd>
-                <dt>Kích thước:</dt>
-                <dd>ATX</dd>
-              </dl>
-            </section>
-            <footer class="card-footer">
-              <strong class="component-price">5.250.000 ₫</strong>
-              <button type="button" class="btn btn-primary btn-add-to-build" data-id="mb-b760-tomahawk">Thêm vào bàn dựng</button>
-            </footer>
+          <!-- Card 2: Mainboard MSI MAG B760 TOMAHAWK WIFI -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" 
+                  alt="MSI MAG B760 TOMAHAWK WIFI Motherboard" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">MAINBOARD</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">MSI GAMING</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    MSI MAG B760 TOMAHAWK WIFI DDR5
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">Socket: LGA1700</span>
+                  <span class="spec-pill spec-pill-emerald">RAM: 4x DDR5 7200+</span>
+                  <span class="spec-pill">Form Factor: ATX</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-white">5.490.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="mb-b760-tomahawk"
+                data-category="MAINBOARD"
+                data-price="5490000"
+                data-tdp="50"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
           </article>
-        </li>
 
-        <!-- Item 3: GPU -->
-        <li>
-          <article class="component-card">
-            <header class="card-header">
-              <span class="badge badge-gpu">GPU</span>
-              <h2 class="component-name">ASUS TUF Gaming GeForce RTX 4070 SUPER 12GB</h2>
-              <p class="component-brand">ASUS</p>
-            </header>
-            <section class="card-specs">
-              <dl>
-                <dt>VRAM:</dt>
-                <dd>12GB GDDR6X</dd>
-                <dt>Công suất tiêu thụ:</dt>
-                <dd>220W</dd>
-                <dt>Nguồn đề xuất:</dt>
-                <dd>650W</dd>
-              </dl>
-            </section>
-            <footer class="card-footer">
-              <strong class="component-price">18.490.000 ₫</strong>
-              <button type="button" class="btn btn-primary btn-add-to-build" data-id="gpu-rtx4070s">Thêm vào bàn dựng</button>
-            </footer>
+          <!-- Card 3: GPU ASUS ROG Strix GeForce RTX 4070 Ti SUPER -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=600&q=80" 
+                  alt="ASUS ROG Strix RTX 4070 Ti SUPER 16GB" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">GPU // GRAPHICS</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">ASUS ROG REPUBLIC OF GAMERS</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    ROG Strix RTX 4070 Ti SUPER 16GB
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">VRAM: 16GB GDDR6X</span>
+                  <span class="spec-pill spec-pill-amber">TDP: 285W</span>
+                  <span class="spec-pill">PCIe 4.0 x16 • 336mm</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-brand-orange">24.890.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="gpu-4070ti-super"
+                data-category="GPU"
+                data-price="24890000"
+                data-tdp="285"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
           </article>
-        </li>
-      </ul>
 
-      <!-- Điều hướng phân trang -->
-      <nav id="catalog-pagination" aria-label="Phân trang danh mục linh kiện">
-        <ul class="pagination-list">
-          <li><a href="#" class="page-link disabled" aria-disabled="true">« Trang trước</a></li>
-          <li><a href="#" class="page-link current" aria-current="page">1</a></li>
-          <li><a href="#" class="page-link">2</a></li>
-          <li><a href="#" class="page-link">3</a></li>
-          <li><a href="#" class="page-link">Trang kế »</a></li>
-        </ul>
-      </nav>
-    </section>
+          <!-- Card 4: RAM Corsair Vengeance RGB 32GB DDR5 -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&w=600&q=80" 
+                  alt="Corsair Vengeance RGB 32GB DDR5 RAM" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">RAM // MEMORY</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">CORSAIR MEMORY</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    Corsair Vengeance RGB 32GB (2x16GB) DDR5
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">Speed: 6000MHz</span>
+                  <span class="spec-pill">Timing: CL30 Intel XMP</span>
+                  <span class="spec-pill">TDP: 15W</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-white">3.250.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="ram-corsair-32gb"
+                data-category="RAM"
+                data-price="3250000"
+                data-tdp="15"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 5: SSD Samsung 990 PRO 2TB NVMe PCIe 4.0 -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80" 
+                  alt="Samsung 990 PRO NVMe SSD M.2" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">SSD // STORAGE</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">SAMSUNG ELECTRONICS</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    Samsung 990 PRO 2TB NVMe M.2
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">PCIe Gen 4.0 x4</span>
+                  <span class="spec-pill">Read: 7450 MB/s</span>
+                  <span class="spec-pill">Write: 6900 MB/s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-white">4.590.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="ssd-samsung-990pro"
+                data-category="SSD"
+                data-price="4590000"
+                data-tdp="10"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Card 6: PSU Corsair RM850x Shift 850W ATX 3.0 -->
+          <article class="bg-brand-graphite border border-brand-border hover:border-brand-orange flex flex-col justify-between crosshair-container transition-all duration-300 group">
+            <div>
+              <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-dark hardware-vignette">
+                <img 
+                  src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=600&q=80" 
+                  alt="Corsair RM850x Shift Modular PSU" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                >
+                <div class="absolute top-2.5 left-2.5 z-20">
+                  <span class="spec-pill spec-pill-orange">PSU // POWER</span>
+                </div>
+                <div class="absolute top-2.5 right-2.5 z-20">
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-brand-emerald/10 border border-brand-emerald/40 text-brand-emerald flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                    <span>Còn hàng</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-3">
+                <div>
+                  <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">CORSAIR POWER</span>
+                  <h3 class="text-base font-bold text-white group-hover:text-brand-orange transition-colors font-mono tracking-tight leading-snug">
+                    Corsair RM850x Shift 850W Gold
+                  </h3>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-1">
+                  <span class="spec-pill spec-pill-emerald">Công suất: 850W</span>
+                  <span class="spec-pill spec-pill-amber">Chuẩn: ATX 3.0 PCIe 5.0</span>
+                  <span class="spec-pill">80 Plus Gold</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-2 border-t border-brand-border/60 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-zinc-500 uppercase block">Đơn giá:</span>
+                <strong class="text-base font-extrabold font-mono text-white">3.890.000 ₫</strong>
+              </div>
+              <button 
+                type="button" 
+                class="btn-industrial btn-industrial-orange text-xs py-2 px-3 btn-add-to-build"
+                data-id="psu-rm850x"
+                data-category="PSU"
+                data-price="3890000"
+                data-wattage="850"
+              >
+                <span>+ Thêm vào cấu hình</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Pagination Bar -->
+        <nav class="bg-brand-graphite border border-brand-border p-4 flex items-center justify-between text-xs font-mono" aria-label="Phân trang linh kiện">
+          <span class="text-zinc-400">Trang 1 / 214 (1,280 linh kiện)</span>
+          <div class="flex items-center space-x-2">
+            <button class="px-3 py-1.5 bg-brand-gunmetal border border-brand-border text-zinc-400 cursor-not-allowed" disabled>← Trước</button>
+            <span class="px-3 py-1.5 bg-brand-orange text-white font-bold">1</span>
+            <button class="px-3 py-1.5 bg-brand-gunmetal border border-brand-border text-zinc-300 hover:text-white hover:border-brand-orange">2</button>
+            <button class="px-3 py-1.5 bg-brand-gunmetal border border-brand-border text-zinc-300 hover:text-white hover:border-brand-orange">3</button>
+            <span class="text-zinc-600">...</span>
+            <button class="px-3 py-1.5 bg-brand-gunmetal border border-brand-border text-zinc-300 hover:text-white hover:border-brand-orange">214</button>
+            <button class="px-3 py-1.5 bg-brand-gunmetal border border-brand-border text-zinc-300 hover:text-white hover:border-brand-orange">Sau →</button>
+          </div>
+        </nav>
+
+      </section>
+
+    </div>
   </main>
 
-  <!-- Chân trang -->
-  <footer id="site-footer">
-    <p>&copy; 2026 PC Part Builder & Hardware Compatibility Checker.</p>
+  <!-- Footer -->
+  <footer id="site-footer" class="border-t border-brand-border bg-brand-dark py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-6 h-6 bg-brand-orange flex items-center justify-center rounded-none text-white font-mono text-xs font-bold">
+            ⚡
+          </div>
+          <span class="font-mono text-xs uppercase text-zinc-400">
+            &copy; 2026 PC BUILDER PRO // HARDWARE COMPATIBILITY & WORKBENCH SYSTEM
+          </span>
+        </div>
+        <div class="flex items-center space-x-6 text-xs font-mono text-zinc-500">
+          <span>HARDWARE INVENTORY</span>
+          <span>REAL-TIME STOCK</span>
+          <span>POSTGRESQL 3NF</span>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="js/main.js"></script>

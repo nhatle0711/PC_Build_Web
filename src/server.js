@@ -1,76 +1,31 @@
-/**
- * ==============================================================================
- * Server Entry Point
- * Nhiệm vụ (役割): Khởi động HTTP Server, thiết lập kết nối đến Cơ sở dữ liệu
- * PostgreSQL và Redis, lắng nghe PORT và quản lý Graceful Shutdown.
- *
- * IT用語:
- * - サーバー起動 (Khởi động máy chủ)
- * - ポート監視 (Lắng nghe cổng / Listen PORT)
- * - グレースフルシャットダウン (Graceful Shutdown)
- * ==============================================================================
- */
-
-require('dotenv').config();
-const http = require('http');
+// src/server.js
 const app = require('./app');
-const { pool } = require('./config/db');
-const redisClient = require('./config/redis');
+const db = require('./config/db'); // hoặc đường dẫn kết nối pool của bạn
 
-const PORT = process.env.PORT || 5000;
-
-const server = http.createServer(app);
+const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   try {
-    // 1. Kiểm tra kết nối sơ bộ tới Database (PostgreSQL)
-    // IT用語: ヘルスチェック (Health Check)
     console.log('[Server] Đang kiểm tra kết nối PostgreSQL...');
-    await pool.query('SELECT 1 AS health_check');
-    console.log('[Server] Kết nối cơ sở dữ liệu PostgreSQL đã sẵn sàng.');
-
-    // 2. Thử kết nối tới Redis (không bắt buộc chặn hoàn toàn nếu Redis chưa bật)
-    try {
-      if (!redisClient.isOpen) {
-        await redisClient.connect();
-      }
-    } catch (redisErr) {
-      console.warn('[Server] Redis không sẵn sàng, hệ thống sẽ chạy mà không có cache tầng 2.');
+    // Thử kết nối nếu có DB
+    if (db && typeof db.query === 'function') {
+      await db.query('SELECT 1');
+      console.log('✅ [Database] Kết nối PostgreSQL thành công!');
     }
-
-    // 3. Lắng nghe yêu cầu trên PORT được chỉ định
-    server.listen(PORT, () => {
-      console.log(`=======================================================`);
-      console.log(`🚀 PC Builder Server đang chạy tại: http://localhost:${PORT}`);
-      console.log(`📡 Môi trường: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`📄 Giao diện Web: http://localhost:${PORT}/index.html`);
-      console.log(`=======================================================`);
-    });
-  } catch (err) {
-    console.error('[Server] Khởi động máy chủ thất bại:', err);
-    process.exit(1);
+  } catch (dbError) {
+    console.warn('⚠️ [Database] Chưa bật PostgreSQL (Milestone 1 chạy chế độ Static UI):', dbError.message);
   }
-}
 
-// Xử lý tắt máy chủ an toàn (Graceful Shutdown)
-function handleShutdown(signal) {
-  console.log(`[Server] Nhận tín hiệu ${signal}. Đang đóng các kết nối...`);
-  server.close(async () => {
-    try {
-      await pool.end();
-      if (redisClient.isOpen) {
-        await redisClient.quit();
-      }
-      console.log('[Server] Đã giải phóng toàn bộ tài nguyên. Tạm biệt!');
-      process.exit(0);
-    } catch (e) {
-      console.error('[Server] Lỗi trong quá trình giải phóng tài nguyên:', e);
-      process.exit(1);
-    }
+  // Luôn luôn lắng nghe PORT để phục vụ giao diện
+  app.listen(PORT, () => {
+    console.log(`=================================================`);
+    console.log(`🚀 Server đang chạy tại: http://localhost:${PORT}`);
+    console.log(`📄 Trang chủ:       http://localhost:${PORT}/index.html`);
+    console.log(`🛒 Kho linh kiện:   http://localhost:${PORT}/catalog.html`);
+    console.log(`🛠️ Bàn lắp ráp PC:  http://localhost:${PORT}/builder.html`);
+    console.log(`💾 Cấu hình đã lưu: http://localhost:${PORT}/saved.html`);
+    console.log(`=================================================`);
   });
 }
-
-process.on('SIGTERM', () => handleShutdown('SIGTERM'));
-process.on('SIGINT', () => handleShutdown('SIGINT'));
 
 startServer();
